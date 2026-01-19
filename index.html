@@ -89,9 +89,82 @@
             50% { transform: translateY(-10px); }
         }
 
-        @keyframes wavePulse {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(-20px); }
+        @keyframes waveMove {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Decorative wave dividers */
+        .wave-divider {
+            width: 100%;
+            height: 30px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .wave-divider svg {
+            position: absolute;
+            width: 200%;
+            height: 100%;
+            animation: waveMove 8s linear infinite;
+        }
+
+        .wave-divider.slow svg {
+            animation-duration: 12s;
+        }
+
+        .wave-divider.reverse svg {
+            animation-direction: reverse;
+        }
+
+        /* Decorative line accents */
+        .line-accent {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            opacity: 0.4;
+        }
+
+        .line-accent::before,
+        .line-accent::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--ocean-light), transparent);
+            max-width: 100px;
+        }
+
+        .line-accent svg {
+            width: 24px;
+            height: 24px;
+            color: var(--ocean-light);
+        }
+
+        /* Palm decoration */
+        .palm-accent {
+            position: absolute;
+            opacity: 0.06;
+            pointer-events: none;
+        }
+
+        .palm-accent svg {
+            width: 200px;
+            height: 200px;
+            color: var(--ocean-deep);
+        }
+
+        .palm-accent.left {
+            left: -50px;
+            top: 50%;
+            transform: translateY(-50%) rotate(-15deg);
+        }
+
+        .palm-accent.right {
+            right: -50px;
+            top: 30%;
+            transform: translateY(-50%) rotate(15deg) scaleX(-1);
         }
 
         .animate-on-scroll {
@@ -148,22 +221,7 @@
             animation: float 8s ease-in-out infinite reverse;
         }
 
-        /* Minimalist wave graphic */
-        .wave-graphic {
-            position: absolute;
-            bottom: 80px;
-            left: 0;
-            right: 0;
-            height: 40px;
-            opacity: 0.15;
-            overflow: hidden;
-        }
-
-        .wave-graphic svg {
-            width: 200%;
-            height: 100%;
-            animation: wavePulse 4s ease-in-out infinite;
-        }
+        /* Minimalist wave graphic - removed */
 
         .hero-content {
             max-width: 600px;
@@ -217,7 +275,7 @@
             background: white;
             border: 1px solid rgba(45, 125, 154, 0.15);
             border-radius: 12px;
-            padding: 1rem 1.5rem;
+            padding: 1.25rem 1.5rem;
             min-width: 140px;
             box-shadow: 0 4px 20px rgba(45, 125, 154, 0.08);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -233,6 +291,13 @@
         .hero-card:hover {
             transform: translateY(-4px);
             box-shadow: 0 8px 30px rgba(45, 125, 154, 0.15);
+        }
+
+        .hero-card-icon {
+            width: 28px;
+            height: 28px;
+            margin-bottom: 0.5rem;
+            color: var(--ocean-light);
         }
 
         .hero-card-value {
@@ -254,6 +319,10 @@
         .price-card {
             background: linear-gradient(135deg, var(--ocean) 0%, var(--ocean-deep) 100%);
             border-color: transparent;
+        }
+
+        .price-card .hero-card-icon {
+            color: rgba(255,255,255,0.7);
         }
 
         .price-card .hero-card-value {
@@ -500,18 +569,36 @@
         }
 
         .consideration-item {
-            border-left: 3px solid var(--seafoam);
-            padding-left: 1.5rem;
-            margin-bottom: 2rem;
-            transition: border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            padding-left: 0;
+            margin-bottom: 2.5rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 12px;
+            border: 1px solid rgba(45, 125, 154, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .consideration-item:hover {
-            border-color: var(--ocean);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(45, 125, 154, 0.08);
         }
 
         .consideration-item:last-child {
             margin-bottom: 0;
+        }
+
+        .consideration-icon {
+            width: 36px;
+            height: 36px;
+            color: var(--ocean-light);
+            margin-bottom: 1rem;
+        }
+
+        .consideration-icon svg {
+            width: 100%;
+            height: 100%;
         }
 
         .consideration-item h4 {
@@ -574,7 +661,7 @@
 
         .fact {
             text-align: center;
-            padding: 1.25rem;
+            padding: 1.5rem 1.25rem;
             background: white;
             border-radius: 12px;
             border: 1px solid rgba(45, 125, 154, 0.1);
@@ -584,6 +671,13 @@
         .fact:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 20px rgba(45, 125, 154, 0.1);
+        }
+
+        .fact-icon {
+            width: 32px;
+            height: 32px;
+            color: var(--ocean-light);
+            margin-bottom: 0.75rem;
         }
 
         .fact-value {
@@ -601,25 +695,19 @@
             margin-top: 0.25rem;
         }
 
-        /* Decorative elements */
-        .surf-icon {
-            display: inline-block;
+        /* Section icons */
+        .section-icon {
             width: 40px;
             height: 40px;
+            color: var(--ocean-light);
             margin-bottom: 1rem;
-            opacity: 0.6;
+            opacity: 0.8;
         }
     </style>
 </head>
 <body>
     <!-- Hero -->
     <header class="hero">
-        <div class="wave-graphic">
-            <svg viewBox="0 0 1200 40" preserveAspectRatio="none">
-                <path d="M0,20 Q150,40 300,20 T600,20 T900,20 T1200,20 T1500,20 T1800,20" fill="none" stroke="#2d7d9a" stroke-width="2"/>
-                <path d="M0,25 Q150,5 300,25 T600,25 T900,25 T1200,25 T1500,25 T1800,25" fill="none" stroke="#5ba3b8" stroke-width="1.5"/>
-            </svg>
-        </div>
         <div class="hero-content">
             <p class="location-label">Costa Rica · Puntarenas</p>
             <h1 class="location">Pilón de Pavones</h1>
@@ -627,18 +715,34 @@
             
             <div class="hero-cards">
                 <div class="hero-card">
+                    <svg class="hero-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="3" y="3" width="18" height="18" rx="2"/>
+                        <path d="M3 9h18M9 21V9"/>
+                    </svg>
                     <div class="hero-card-value">621 m²</div>
                     <div class="hero-card-label">Lot Size</div>
                 </div>
                 <div class="hero-card">
+                    <svg class="hero-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M21 21H3V3"/>
+                        <path d="M7 17v-5M12 17V8M17 17v-8"/>
+                    </svg>
                     <div class="hero-card-value">6,683 ft²</div>
                     <div class="hero-card-label">Square Feet</div>
                 </div>
                 <div class="hero-card">
+                    <svg class="hero-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="9"/>
+                        <path d="M12 7v5l3 3"/>
+                    </svg>
                     <div class="hero-card-value">5 min</div>
                     <div class="hero-card-label">Walk to Beach</div>
                 </div>
                 <div class="hero-card price-card">
+                    <svg class="hero-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="9"/>
+                        <path d="M12 7v10M9 10h6M9 14h6"/>
+                    </svg>
                     <div class="hero-card-value">$60,000</div>
                     <div class="hero-card-label">USD</div>
                 </div>
@@ -655,6 +759,14 @@
         </div>
     </header>
 
+    <!-- Wave Divider -->
+    <div class="wave-divider">
+        <svg viewBox="0 0 1200 30" preserveAspectRatio="none">
+            <path d="M0,15 Q75,5 150,15 T300,15 T450,15 T600,15 T750,15 T900,15 T1050,15 T1200,15 T1350,15 T1500,15 T1650,15 T1800,15 T1950,15 T2100,15 T2250,15 T2400,15" fill="none" stroke="#5ba3b8" stroke-width="1.5" opacity="0.4"/>
+            <path d="M0,20 Q75,30 150,20 T300,20 T450,20 T600,20 T750,20 T900,20 T1050,20 T1200,20 T1350,20 T1500,20 T1650,20 T1800,20 T1950,20 T2100,20 T2250,20 T2400,20" fill="none" stroke="#a8d5d8" stroke-width="1" opacity="0.3"/>
+        </svg>
+    </div>
+
     <!-- Why This Lot -->
     <section>
         <h2 class="animate-on-scroll">Why I Like This One</h2>
@@ -662,18 +774,34 @@
         
         <div class="quick-facts">
             <div class="fact animate-on-scroll stagger-1">
+                <svg class="fact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <rect x="3" y="3" width="18" height="18" rx="2"/>
+                    <path d="M3 9h18M9 21V9"/>
+                </svg>
                 <div class="fact-value">621 m²</div>
                 <div class="fact-label">Lot Size</div>
             </div>
             <div class="fact animate-on-scroll stagger-2">
+                <svg class="fact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M3 21V7l9-4 9 4v14"/>
+                    <path d="M9 21v-6h6v6"/>
+                </svg>
                 <div class="fact-value">~270m</div>
                 <div class="fact-label">To the Water</div>
             </div>
             <div class="fact animate-on-scroll stagger-3">
+                <svg class="fact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="12" cy="12" r="9"/>
+                    <path d="M12 7v10M9 10h6M9 14h6"/>
+                </svg>
                 <div class="fact-value">$60K</div>
                 <div class="fact-label">Asking Price</div>
             </div>
             <div class="fact animate-on-scroll stagger-4">
+                <svg class="fact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M9 12l2 2 4-4"/>
+                    <circle cx="12" cy="12" r="9"/>
+                </svg>
                 <div class="fact-value">✓</div>
                 <div class="fact-label">Outside Maritime Zone</div>
             </div>
@@ -684,6 +812,14 @@
             <p>All paperwork is in order. This lot is ready for ownership transfer, no legal headaches, no waiting. That alone is worth a lot in Costa Rica.</p>
         </div>
     </section>
+
+    <!-- Line Accent -->
+    <div class="line-accent">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <ellipse cx="12" cy="12" rx="3" ry="10"/>
+            <path d="M12 2v20"/>
+        </svg>
+    </div>
 
     <!-- Gallery -->
     <section class="gallery">
@@ -722,6 +858,14 @@
         <img id="lightbox-img" src="" alt="Full size image">
     </div>
 
+    <!-- Wave Divider -->
+    <div class="wave-divider slow">
+        <svg viewBox="0 0 1200 30" preserveAspectRatio="none">
+            <path d="M0,15 Q75,5 150,15 T300,15 T450,15 T600,15 T750,15 T900,15 T1050,15 T1200,15 T1350,15 T1500,15 T1650,15 T1800,15 T1950,15 T2100,15 T2250,15 T2400,15" fill="none" stroke="#5ba3b8" stroke-width="1.5" opacity="0.4"/>
+            <path d="M0,20 Q75,30 150,20 T300,20 T450,20 T600,20 T750,20 T900,20 T1050,20 T1200,20 T1350,20 T1500,20 T1650,20 T1800,20 T1950,20 T2100,20 T2250,20 T2400,20" fill="none" stroke="#a8d5d8" stroke-width="1" opacity="0.3"/>
+        </svg>
+    </div>
+
     <!-- My Take -->
     <section class="my-take">
         <div class="inner">
@@ -737,25 +881,57 @@
         </div>
     </section>
 
+    <!-- Line Accent -->
+    <div class="line-accent">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 3v18M3 12h18"/>
+            <circle cx="12" cy="12" r="3"/>
+        </svg>
+    </div>
+
     <!-- Things to Consider -->
     <section class="considerations">
         <h2 class="animate-on-scroll">Things to Consider</h2>
         
         <div class="consideration-item animate-on-scroll stagger-1">
+            <div class="consideration-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/>
+                </svg>
+            </div>
             <h4>No Structure Yet</h4>
             <p>This is raw land, no house on it. But that means you get to build exactly what you want. A comfortable home can be built starting around $40-60K in this area.</p>
         </div>
         
         <div class="consideration-item animate-on-scroll stagger-2">
+            <div class="consideration-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="12" cy="12" r="9"/>
+                    <path d="M12 8v4M12 16h.01"/>
+                </svg>
+            </div>
             <h4>Not Visited in Person</h4>
             <p>I haven't walked the lot myself yet, so I can't fully vet the neighborhood vibe. That said, the videos look good: established homes nearby, quiet area, good access road.</p>
         </div>
         
         <div class="consideration-item animate-on-scroll stagger-3">
+            <div class="consideration-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M12 2v6M12 22v-6M4.93 4.93l4.24 4.24M14.83 14.83l4.24 4.24M2 12h6M22 12h-6M4.93 19.07l4.24-4.24M14.83 9.17l4.24-4.24"/>
+                </svg>
+            </div>
             <h4>Water</h4>
             <p>You'll need to drill a well. Water in the area isn't potable, so budget for a UV + sediment filtration system (or full reverse osmosis). Estimated cost: $1-2K for the well, a few hundred for filters.</p>
         </div>
     </section>
+
+    <!-- Wave Divider -->
+    <div class="wave-divider reverse">
+        <svg viewBox="0 0 1200 30" preserveAspectRatio="none">
+            <path d="M0,15 Q75,5 150,15 T300,15 T450,15 T600,15 T750,15 T900,15 T1050,15 T1200,15 T1350,15 T1500,15 T1650,15 T1800,15 T1950,15 T2100,15 T2250,15 T2400,15" fill="none" stroke="#5ba3b8" stroke-width="1.5" opacity="0.4"/>
+            <path d="M0,20 Q75,30 150,20 T300,20 T450,20 T600,20 T750,20 T900,20 T1050,20 T1200,20 T1350,20 T1500,20 T1650,20 T1800,20 T1950,20 T2100,20 T2250,20 T2400,20" fill="none" stroke="#a8d5d8" stroke-width="1" opacity="0.3"/>
+        </svg>
+    </div>
 
     <!-- Contact -->
     <section class="contact">
