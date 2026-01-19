@@ -274,6 +274,24 @@
             animation: bounce 2s infinite;
         }
 
+        .hero-image {
+            margin-top: 2.5rem;
+            width: 100%;
+            max-width: 700px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 40px rgba(45, 125, 154, 0.2);
+            animation: fadeInUp 0.8s ease forwards;
+            animation-delay: 1s;
+            opacity: 0;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
         @keyframes bounce {
             0%, 100% { transform: translateX(-50%) translateY(0); }
             50% { transform: translateX(-50%) translateY(6px); }
@@ -625,6 +643,10 @@
                     <div class="hero-card-label">USD</div>
                 </div>
             </div>
+            
+            <div class="hero-image">
+                <img src="images/03-aerial.jpeg" alt="Aerial view of the lot near Pilón de Pavones">
+            </div>
         </div>
         <div class="scroll-hint">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -706,7 +728,7 @@
             <h2 class="animate-on-scroll">My Take</h2>
             <p class="verdict animate-on-scroll stagger-1">I would buy this.</p>
             <p class="animate-on-scroll stagger-2">Pilón is a world-class wave in its own right, and Pavones is just 12 minutes by car. The area is thriving with nature, the cost of living is lower, and I just love it out here.</p>
-            <p class="animate-on-scroll stagger-3">The paperwork is clean and ready to transfer. A comfortable home can be built starting around $40-60K. At $120K all-in, that's a lot plus a home, steps from the wave. That's really hard to find around this area.</p>
+            <p class="animate-on-scroll stagger-3">The paperwork is clean and ready to transfer. A comfortable home can be built starting around $40-60K. A lot plus a home, steps from the wave. That's really hard to find around this area.</p>
             
             <div class="market-context animate-on-scroll">
                 <h4>For Reference</h4>
